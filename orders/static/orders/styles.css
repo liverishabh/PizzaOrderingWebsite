@@ -4,3 +4,10 @@ body{
     background-attachment: fixed;
     background-size: cover;
 }
+
+#registerform, #loginform, #logoutview{
+    margin-top: 5%;
+    margin-bottom: 5%;
+    background-color: #ebf1d5;
+    box-shadow: 0px 0px 20px 2px #888888;
+}

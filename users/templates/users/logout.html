@@ -1,0 +1,18 @@
+{% extends "orders/base.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %} 
+    Logout
+{% endblock %}
+
+{% block content %}
+    <div class="container-sm p-5 col-lg-6" id="logoutview">
+        <h3> You have been successfully logged out! </h3>
+        <div class="border-top pt-3">
+            <small class="text-muted">
+                <a href="{% url 'login' %}"> Login Again </a>
+            </small>
+        </div>
+    </div>
+
+{% endblock %}
