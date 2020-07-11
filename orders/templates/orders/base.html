@@ -1,0 +1,67 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+
+        <!-- My CSS -->
+        <link rel="stylesheet" href="{% static 'orders/styles.css' %}"/>
+        
+        <!-- first jQuery, then Popper.js, then Bootstrap JS -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+        <!-- Fontawesome  -->
+        <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+
+        <title> Pinnochio's Pizza - {% block title %} {% endblock %} </title>
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+            <div class="container-fluid">                
+                <a class="navbar-brand" href="/">
+                    <img src="/static/orders/pinocchio.gif" alt="" height="30px">                    
+                    Pinnochio's <br>
+                    <small>Pizza & Subs</small>
+                </a>
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="navbar-toggler-icon"></span>                                         
+                </button>                
+                <div class="collapse navbar-collapse" id="myNavbar">
+                    {% if user.is_authenticated %}
+                    <ul class="navbar-nav ml-auto">                        
+                        <li class="nav-item"><a href="{% url 'index' %}" class="nav-link">Menu</a></li>
+                        <a class="nav-link active" href="#"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
+                        <li class="nav-item"><a href="{% url 'index' %}" class="nav-link"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                    </ul>
+                    {% else %}
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item"><a href="{% url 'index' %}" class="nav-link"><i class="fas fa-user-plus"></i> Sign Up</a></li>
+                        <li class="nav-item"><a href="{% url 'index' %}" class="nav-link"><i class="fas fa-sign-in-alt"></i> Login</a></li>
+                    </ul>
+                    {% endif %}
+                </div>
+            </div>
+        </nav>
+
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+
+        <main class="">
+            {% block content %} {% endblock %}
+        </main>
+
+        
+    </body>
+</html>
