@@ -35,8 +35,10 @@
                 </button>                
                 <div class="collapse navbar-collapse" id="myNavbar">
                     {% if user.is_authenticated %}
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item"><a href="{% url 'index' %}" class="nav-link">Menu</a></li>                        
+                    </ul>
                     <ul class="navbar-nav ml-auto">                        
-                        <li class="nav-item"><a href="{% url 'index' %}" class="nav-link">Menu</a></li>
                         <a class="nav-link active" href="#"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
                         <li class="nav-item"><a href="{% url 'logout' %}" class="nav-link"><i class="fas fa-sign-out-alt"></i> Logout </a></li>
                     </ul>
@@ -52,13 +54,16 @@
 
         {% if messages %}
             {% for message in messages %}
-                <div class="alert alert-{{ message.tags }}">
-                    {{ message }}
+                <div class="container text-center">
+                    <div class="alert alert-{{ message.tags }}">
+                        {{ message }}
+                    </div>
                 </div>
+                
             {% endfor %}
         {% endif %}
 
-        <main class="">
+        <main>
             {% block content %} {% endblock %}
         </main>
 

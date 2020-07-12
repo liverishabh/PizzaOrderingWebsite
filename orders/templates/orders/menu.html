@@ -1,0 +1,230 @@
+{% extends "orders/base.html" %}
+
+{% block title %}
+    Menu
+{% endblock %}
+
+{% block content %}
+
+    <div class="container mt-5">
+        <div class="row row-content">
+            <div class="col-12">
+                <ul class="nav nav-tabs" id="menuitems">                                      
+                    <li class="nav-item">
+                        <a href="#pizza" class="nav-link active" role="tab" data-toggle="tab"> Pizza </a>
+                    </li>
+                    <li class="nav-item ml-3">
+                        <a href="#subs" class="nav-link" role="tab" data-toggle="tab"> Subs </a>
+                    </li>
+                    <li class="nav-item ml-3">
+                        <a href="#pasta" class="nav-link" role="tab" data-toggle="tab"> Pasta </a>
+                    </li>
+                    <li class="nav-item ml-3">
+                        <a href="#dinnerplatters" class="nav-link" role="tab" data-toggle="tab"> Dinner Platters </a>
+                    </li>
+                    <li class="nav-item ml-3">
+                        <a href="#salads" class="nav-link" role="tab" data-toggle="tab"> Salads </a>
+                    </li>
+                </ul>
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane fade show active" id="pizza">
+                        <h2 class="text-white text-center mt-2"> Regular Pizza </h2>
+                            <div class="card-columns container pt-3">
+                                {% for pizza in pizzas %}
+                                    {% if pizza.style == 'R' %}
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <h3 class="card-title"> {{ pizza.name }}</h3>
+                                            <hr>
+                                            <p class="card-text"> Price(Small): ${{ pizza.price_small }}</p>
+                                            <p class="card-text"> Price(Large): ${{ pizza.price_large }}</p>  
+                                            <div class="card-footer">
+                                                <form action="" method="POST">
+                                                    {% csrf_token %}
+                                                    <div class="form-group">
+                                                        <input type="hidden" name="dishname" value="{{ pizza.name }}">
+                                                        <input type="hidden" name="price_small" value="{{ pizza.price_small }}">
+                                                        <input type="hidden" name="price_large" value="{{ pizza.price_large }}">
+                                                        <label for="pizza_size">Choose Size:</label>
+                                                        <select class="form-control" id="pizza_size" name="pizza_size">
+                                                            <option value="small"> Small </option>
+                                                            <option value="large"> Large </option>
+                                                        </select>
+                                                        <label for="pizza_topping">Choose Topping(s):</label>
+                                                        <select multiple class="form-control" id="pizza_topping" name="pizza_topping">
+                                                            {% for topping in toppings %}
+                                                            <option value="{{ topping }}"> {{topping}} </option>
+                                                            {% endfor %}                                                    
+                                                        </select>
+                                                        <small class="text-muted">Hold down “Control”, or “Command” on a Mac, to select more than one.</small>
+                                                    </div>
+                                                    <button type="submit" href="#" class="btn btn-primary">Add to cart</button>
+                                                </form>                                        
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+
+                        <h2 class="text-white text-center mt-2"> Sicilian Pizza </h2>
+                            <div class="card-columns container pt-3">
+                                {% for pizza in pizzas %}
+                                    {% if pizza.style == 'S' %}
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <h3 class="card-title"> {{ pizza.name }}</h3>
+                                            <hr>
+                                            <p class="card-text"> Price(Small): ${{ pizza.price_small }}</p>
+                                            <p class="card-text"> Price(Large): ${{ pizza.price_large }}</p>  
+                                            <div class="card-footer">
+                                                <form action="" method="POST">
+                                                    {% csrf_token %}
+                                                    <div class="form-group">
+                                                        <input type="hidden" name="dishname" value="{{ pizza.name }}">
+                                                        <input type="hidden" name="price_small" value="{{ pizza.price_small }}">
+                                                        <input type="hidden" name="price_large" value="{{ pizza.price_large }}">
+                                                        <label for="pizza_size">Choose Size:</label>
+                                                        <select class="form-control" id="pizza_size" name="pizza_size">
+                                                            <option value="small"> Small </option>
+                                                            <option value="large"> Large </option>
+                                                        </select>
+                                                        <label for="pizza_topping">Choose Topping(s):</label>
+                                                        <select multiple class="form-control" id="pizza_topping" name="pizza_topping">
+                                                            {% for topping in toppings %}
+                                                            <option value="{{ topping }}"> {{topping}} </option>
+                                                            {% endfor %}                                                    
+                                                        </select>
+                                                        <small class="text-muted">Hold down “Control”, or “Command” on a Mac, to select more than one.</small>
+                                                    </div>
+                                                    <button type="submit" href="#" class="btn btn-primary">Add to cart</button>
+                                                </form>                                        
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane fade" id="subs">
+                        <div class="card-columns container pt-3">
+                            {% for sub in subs %}
+                            <div class="card">
+                                <div class="card-body">
+                                    <h3 class="card-title"> {{ sub.name }}</h3>
+                                    <hr>
+                                    <p class="card-text"> Price(Small): ${{ sub.price_small }}</p>
+                                    <p class="card-text"> Price(Large): ${{ sub.price_large }}</p>  
+                                    <div class="card-footer">
+                                        <form action="" method="POST">
+                                            {% csrf_token %}
+                                            <div class="form-group">
+                                                <input type="hidden" name="dishname" value="{{ sub.name }}">
+                                                <input type="hidden" name="price_small" value="{{ sub.price_small }}">
+                                                <input type="hidden" name="price_large" value="{{ sub.price_large }}">
+                                                <label for="sub_size">Choose Size:</label>
+                                                <select class="form-control" id="sub_size" name="sub_size">
+                                                    <option value="small"> Small </option>
+                                                    <option value="large"> Large </option>
+                                                </select>
+                                                <label for="sub_extras">Choose Extras:</label>
+                                                <select class="form-control" id="sub_extras" name="sub_extras">
+                                                    {% for extra in subextras %}
+                                                    <option value="{{ extra }}"> {{extra}} </option>
+                                                    {% endfor %}                                                    
+                                                </select>
+                                            </div>
+                                            <button type="submit" href="#" class="btn btn-primary">Add to cart</button>
+                                        </form>                                        
+                                    </div>
+                                </div>
+                            </div>
+                            {% empty %}
+                            <h4 class="text-white">No Subs</h4>
+                            {% endfor %}
+                        </div>                        
+                    </div>
+                    <div role="tabpanel" class="tab-pane fade" id="pasta">
+                        <div class="card-columns container pt-3">
+                            {% for pasta in pastas %}
+                            <div class="card">
+                                <div class="card-body">
+                                    <h3 class="card-title"> {{ pasta.name }}</h3>
+                                    <hr>
+                                    <p class="card-text"> Price: ${{ pasta.price }}</p>  
+                                    <div class="card-footer">
+                                        <form action="" method="POST">
+                                            {% csrf_token %}
+                                            <input type="hidden" name="dishname" value="{{ pasta.name }}">
+                                            <input type="hidden" name="price" value="{{ pasta.price }}">
+                                            <button type="submit" href="#" class="btn btn-primary">Add to cart</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            {% empty %}
+                            <h4 class="text-white">No Pastas.</h4>
+                            {% endfor %}
+                        </div> 
+                    </div>
+                    <div role="tabpanel" class="tab-pane fade" id="dinnerplatters">
+                        <div class="card-columns container pt-3">
+                            {% for platter in dinnerplatters %}
+                            <div class="card">
+                                <div class="card-body">
+                                    <h3 class="card-title"> {{ platter.name }}</h3>
+                                    <hr>
+                                    <p class="card-text"> Price(Small): ${{ platter.price_small }}</p>
+                                    <p class="card-text"> Price(Large): ${{ platter.price_large }}</p>  
+                                    <div class="card-footer">
+                                        <form action="" method="POST">
+                                            {% csrf_token %}
+                                            <div class="form-group">
+                                                <input type="hidden" name="dishname" value="{{ platter.name }}">
+                                                <input type="hidden" name="price_small" value="{{ platter.price_small }}">
+                                                <input type="hidden" name="price_large" value="{{ platter.price_large }}">
+                                                <label for="platter">Choose Size:</label>
+                                                <select class="form-control" id="platter" name="platter_size">
+                                                    <option value="small"> Small </option>
+                                                    <option value="large"> Large </option>
+                                                </select>
+                                            </div>
+                                            <button type="submit" href="#" class="btn btn-primary">Add to cart</button>
+                                        </form>                                        
+                                    </div>
+                                </div>
+                            </div>
+                            {% empty %}
+                            <h4 class="text-white">No Dinner Platters.</h4>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane fade" id="salads">
+                        <div class="card-columns container pt-3">
+                            {% for salad in salads %}
+                            <div class="card">
+                                <div class="card-body">
+                                    <h3 class="card-title"> {{ salad.name }}</h3>
+                                    <hr>
+                                    <p class="card-text"> Price: ${{ salad.price }}</p>  
+                                    <div class="card-footer">
+                                        <form action="" method="POST">
+                                            {% csrf_token %}
+                                            <input type="hidden" name="dishname" value="{{ salad.name }}">
+                                            <input type="hidden" name="price" value="{{ salad.price }}">
+                                            <button type="submit" href="#" class="btn btn-primary">Add to cart</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            {% empty %}
+                            <h4 class="text-white">No Salads.</h4>
+                            {% endfor %}
+                        </div>                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+{% endblock %}
