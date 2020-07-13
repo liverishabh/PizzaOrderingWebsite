@@ -1,0 +1,32 @@
+{% extends "orders/base.html" %}
+
+{% block title %}
+    Menu
+{% endblock %}
+
+{% block content %}
+
+<table class="table table-hover table-light">
+    <thead class="thed-light">
+        <tr>
+            <th>Dish</th>
+            <th>Name</th>
+            <th>Remarks</th>
+            <th>Price</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for order in orders %}
+        <tr>
+            <td>{{ order.dishtype }}</td>
+            <td>{{ order.dishname }}</td>
+            <td>{{ order.remarks }}</td>
+            <td>${{ order.price }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<h5 class="text-white"> Total Price: ${{ total_price }}</h5>
+
+{% endblock %}

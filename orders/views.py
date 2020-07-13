@@ -9,7 +9,7 @@ from .models import Pizza, Pasta, Sub, SubExtras, Salads, DinnerPlatters, Toppin
 
 @login_required
 def index(request):
-    context ={
+    context = {
         "pizzas" : Pizza.objects.all(),
         "toppings" : Toppings.objects.all(),
         "subs" : Sub.objects.all(),
@@ -20,7 +20,11 @@ def index(request):
     }
     return render(request, "orders/menu.html", context)
 
+@login_required
 def additems(request):
+    if request.method == 'GET':
+        return HttpResponseRedirect(reverse('index'))
+
     dish = request.POST["dishtype"]
 
     if dish in ["regularpizza", "sicilianpizza"]:
@@ -67,8 +71,7 @@ def additems(request):
             extra_price += SubExtras.objects.filter(name=extra).first().price
             remarks = remarks + extra + ', '
 
-        # price = price + decimal.Decimal('1.5')
-        remarks = remarks[slice(len(remarks)-1)]
+        remarks = remarks[slice(len(remarks)-1)] # This is not working
         price = decimal.Decimal(price)
         price += extra_price
         order = Orders(username = request.user.username, dishtype = 'Sub', dishname = name, price = price, remarks = remarks, status = 'Initiated')
@@ -114,4 +117,17 @@ def additems(request):
         
         messages.success(request, 'Item was successfully added to the cart! Go to the cart and checkout the order')
         return HttpResponseRedirect(reverse('index'))
+
+@login_required
+def cart(request):
+    orders = Orders.objects.filter(username = request.user.username).filter(status = 'Initiated')
+    total_price = 0
+    for order in orders:
+        total_price += order.price
+
+    context = {
+        "orders" : orders,
+        "total_price" : total_price,
+    }
+    return render(request, "orders/cart.html", context)
 

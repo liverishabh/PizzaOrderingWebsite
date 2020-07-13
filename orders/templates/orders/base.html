@@ -39,7 +39,7 @@
                         <li class="nav-item"><a href="{% url 'index' %}" class="nav-link">Menu</a></li>                        
                     </ul>
                     <ul class="navbar-nav ml-auto">                        
-                        <a class="nav-link active" href="#"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
+                        <a class="nav-link active" href="{% url 'cart' %}"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
                         <li class="nav-item"><a href="{% url 'logout' %}" class="nav-link"><i class="fas fa-sign-out-alt"></i> Logout </a></li>
                     </ul>
                     {% else %}
@@ -54,7 +54,7 @@
 
         {% if messages %}
             {% for message in messages %}
-                <div class="container text-center">
+                <div class="container pt-3 text-center">
                     <div class="alert alert-{{ message.tags }}">
                         {{ message }}
                     </div>

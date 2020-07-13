@@ -28,85 +28,86 @@
                 </ul>
                 <div class="tab-content">
                     <div role="tabpanel" class="tab-pane fade show active" id="pizza">
-                        <h2 class="text-white text-center mt-2"> Regular Pizza </h2>
-                            <div class="card-columns container pt-3">
-                                {% for pizza in pizzas %}
-                                    {% if pizza.style == 'R' %}
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <h3 class="card-title"> {{ pizza.name }}</h3>
-                                            <hr>
-                                            <p class="card-text"> Price(Small): ${{ pizza.price_small }}</p>
-                                            <p class="card-text"> Price(Large): ${{ pizza.price_large }}</p>  
-                                            <div class="card-footer">
-                                                <form action="{% url 'additems' %}" method="POST">
-                                                    {% csrf_token %}
-                                                    <div class="form-group">
-                                                        <input type="hidden" name="dishtype" value="regularpizza">
-                                                        <input type="hidden" name="dishname" value="{{ pizza.name }}">
-                                                        <input type="hidden" name="price_small" value="{{ pizza.price_small }}">
-                                                        <input type="hidden" name="price_large" value="{{ pizza.price_large }}">
-                                                        <label for="pizza_size">Choose Size:</label>
-                                                        <select class="form-control" id="pizza_size" name="pizza_size">
-                                                            <option value="Small"> Small </option>
-                                                            <option value="Large"> Large </option>
-                                                        </select>
-                                                        <label for="pizza_topping">Choose Topping(s):</label>
-                                                        <select multiple class="form-control" id="pizza_topping" name="pizza_topping">
-                                                            {% for topping in toppings %}
-                                                            <option value="{{ topping }}"> {{topping}} </option>
-                                                            {% endfor %}                                                    
-                                                        </select>
-                                                        <small class="text-muted">Hold down “Control”, or “Command” on a Mac, to select more than one.</small>
-                                                    </div>
-                                                    <button type="submit" class="btn btn-primary">Add to cart</button>
-                                                </form>                                        
-                                            </div>
+                        <h2 class="text-white text-center mt-3"> Regular Pizza </h2>
+                        <div class="card-columns container pt-3">
+                            {% for pizza in pizzas %}
+                                {% if pizza.style == 'R' %}
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h3 class="card-title"> {{ pizza.name }}</h3>
+                                        <hr>
+                                        <p class="card-text"> Price(Small): ${{ pizza.price_small }}</p>
+                                        <p class="card-text"> Price(Large): ${{ pizza.price_large }}</p>  
+                                        <div class="card-footer">
+                                            <form action="{% url 'additems' %}" method="POST">
+                                                {% csrf_token %}
+                                                <div class="form-group">
+                                                    <input type="hidden" name="dishtype" value="regularpizza">
+                                                    <input type="hidden" name="dishname" value="{{ pizza.name }}">
+                                                    <input type="hidden" name="price_small" value="{{ pizza.price_small }}">
+                                                    <input type="hidden" name="price_large" value="{{ pizza.price_large }}">
+                                                    <label for="pizza_size">Choose Size:</label>
+                                                    <select class="form-control" id="pizza_size" name="pizza_size">
+                                                        <option value="Small"> Small </option>
+                                                        <option value="Large"> Large </option>
+                                                    </select>
+                                                    <label for="pizza_topping">Choose Topping(s):</label>
+                                                    <select multiple class="form-control" id="pizza_topping" name="pizza_topping">
+                                                        {% for topping in toppings %}
+                                                        <option value="{{ topping }}"> {{topping}} </option>
+                                                        {% endfor %}                                                    
+                                                    </select>
+                                                    <small class="text-muted">Hold down “Control”, or “Command” on a Mac, to select more than one.</small>
+                                                </div>
+                                                <button type="submit" class="btn btn-primary">Add to cart</button>
+                                            </form>                                        
                                         </div>
                                     </div>
-                                    {% endif %}
-                                {% endfor %}
-                            </div>
+                                </div>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
 
                         <h2 class="text-white text-center mt-2"> Sicilian Pizza </h2>
-                            <div class="card-columns container pt-3">
-                                {% for pizza in pizzas %}
-                                    {% if pizza.style == 'S' %}
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <h3 class="card-title"> {{ pizza.name }}</h3>
-                                            <hr>
-                                            <p class="card-text"> Price(Small): ${{ pizza.price_small }}</p>
-                                            <p class="card-text"> Price(Large): ${{ pizza.price_large }}</p>  
-                                            <div class="card-footer">
-                                                <form action="{% url 'additems' %}" method="POST">
-                                                    {% csrf_token %}
-                                                    <div class="form-group">
-                                                        <input type="hidden" name="dishtype" value="sicilianpizza">
-                                                        <input type="hidden" name="dishname" value="{{ pizza.name }}">
-                                                        <input type="hidden" name="price_small" value="{{ pizza.price_small }}">
-                                                        <input type="hidden" name="price_large" value="{{ pizza.price_large }}">
-                                                        <label for="pizza_size">Choose Size:</label>
-                                                        <select class="form-control" id="pizza_size" name="pizza_size">
-                                                            <option value="Small"> Small </option>
-                                                            <option value="Large"> Large </option>
-                                                        </select>
-                                                        <label for="pizza_topping">Choose Topping(s):</label>
-                                                        <select multiple class="form-control" id="pizza_topping" name="pizza_topping">
-                                                            {% for topping in toppings %}
-                                                            <option value="{{ topping }}"> {{topping}} </option>
-                                                            {% endfor %}                                                    
-                                                        </select>
-                                                        <small class="text-muted">Hold down “Control”, or “Command” on a Mac, to select more than one.</small>
-                                                    </div>
-                                                    <button type="submit" class="btn btn-primary">Add to cart</button>
-                                                </form>                                        
-                                            </div>
+                        <div class="card-columns container pt-3">
+                            {% for pizza in pizzas %}
+                                {% if pizza.style == 'S' %}
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h3 class="card-title"> {{ pizza.name }}</h3>
+                                        <hr>
+                                        <p class="card-text"> Price(Small): ${{ pizza.price_small }}</p>
+                                        <p class="card-text"> Price(Large): ${{ pizza.price_large }}</p>  
+                                        <div class="card-footer">
+                                            <form action="{% url 'additems' %}" method="POST">
+                                                {% csrf_token %}
+                                                <div class="form-group">
+                                                    <input type="hidden" name="dishtype" value="sicilianpizza">
+                                                    <input type="hidden" name="dishname" value="{{ pizza.name }}">
+                                                    <input type="hidden" name="price_small" value="{{ pizza.price_small }}">
+                                                    <input type="hidden" name="price_large" value="{{ pizza.price_large }}">
+                                                    <label for="pizza_size">Choose Size:</label>
+                                                    <select class="form-control" id="pizza_size" name="pizza_size">
+                                                        <option value="Small"> Small </option>
+                                                        <option value="Large"> Large </option>
+                                                    </select>
+                                                    <label for="pizza_topping">Choose Topping(s):</label>
+                                                    <select multiple class="form-control" id="pizza_topping" name="pizza_topping">
+                                                        {% for topping in toppings %}
+                                                        <option value="{{ topping }}"> {{topping}} </option>
+                                                        {% endfor %}                                                    
+                                                    </select>
+                                                    <small class="text-muted">Hold down “Control”, or “Command” on a Mac, to select more than one.</small>
+                                                </div>
+                                                <button type="submit" class="btn btn-primary">Add to cart</button>
+                                            </form>                                        
                                         </div>
                                     </div>
-                                    {% endif %}
-                                {% endfor %}
-                            </div>
+                                </div>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                        
                     </div>
                     <div role="tabpanel" class="tab-pane fade" id="subs">
                         <div class="card-columns container pt-3">

@@ -1,7 +1,5 @@
 from django.db import models
 
-# Create your models here.
-
 class Pasta(models.Model):
     name = models.CharField(max_length=32)
     price = models.DecimalField(max_digits=4, decimal_places=2, help_text='Price in US dollars')
@@ -18,7 +16,6 @@ class Salads(models.Model):
 
 class DinnerPlatters(models.Model):
     name = models.CharField(max_length=32)
-    # size = models.CharField(max_length=1, choices=SIZES)
     price_small = models.DecimalField(max_digits=5, decimal_places=2, help_text='Price in US dollars')
     price_large = models.DecimalField(max_digits=5, decimal_places=2, help_text='Price in US dollars')
 
@@ -34,7 +31,6 @@ class SubExtras(models.Model):
 
 class Sub(models.Model):
     name = models.CharField(max_length=32)
-    # size = models.CharField(max_length=1, choices=SIZES)
     price_small = models.DecimalField(max_digits=4, decimal_places=2, help_text='Price in US dollars')
     price_large = models.DecimalField(max_digits=4, decimal_places=2, help_text='Price in US dollars')
     extras = models.ManyToManyField(SubExtras, blank=True)
@@ -56,7 +52,6 @@ STYLES = (
 class Pizza(models.Model):
     name = models.CharField(max_length=32)
     style = models.CharField(max_length=1, choices=STYLES)
-    # size = models.CharField(max_length=1, choices=SIZES)
     price_small = models.DecimalField(max_digits=5, decimal_places=2, help_text='Price in US dollars')
     price_large = models.DecimalField(max_digits=5, decimal_places=2, help_text='Price in US dollars')
     toppings = models.ManyToManyField(Toppings, blank=True)
