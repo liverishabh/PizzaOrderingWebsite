@@ -39,16 +39,17 @@
                                             <p class="card-text"> Price(Small): ${{ pizza.price_small }}</p>
                                             <p class="card-text"> Price(Large): ${{ pizza.price_large }}</p>  
                                             <div class="card-footer">
-                                                <form action="" method="POST">
+                                                <form action="{% url 'additems' %}" method="POST">
                                                     {% csrf_token %}
                                                     <div class="form-group">
+                                                        <input type="hidden" name="dishtype" value="regularpizza">
                                                         <input type="hidden" name="dishname" value="{{ pizza.name }}">
                                                         <input type="hidden" name="price_small" value="{{ pizza.price_small }}">
                                                         <input type="hidden" name="price_large" value="{{ pizza.price_large }}">
                                                         <label for="pizza_size">Choose Size:</label>
                                                         <select class="form-control" id="pizza_size" name="pizza_size">
-                                                            <option value="small"> Small </option>
-                                                            <option value="large"> Large </option>
+                                                            <option value="Small"> Small </option>
+                                                            <option value="Large"> Large </option>
                                                         </select>
                                                         <label for="pizza_topping">Choose Topping(s):</label>
                                                         <select multiple class="form-control" id="pizza_topping" name="pizza_topping">
@@ -58,7 +59,7 @@
                                                         </select>
                                                         <small class="text-muted">Hold down “Control”, or “Command” on a Mac, to select more than one.</small>
                                                     </div>
-                                                    <button type="submit" href="#" class="btn btn-primary">Add to cart</button>
+                                                    <button type="submit" class="btn btn-primary">Add to cart</button>
                                                 </form>                                        
                                             </div>
                                         </div>
@@ -78,16 +79,17 @@
                                             <p class="card-text"> Price(Small): ${{ pizza.price_small }}</p>
                                             <p class="card-text"> Price(Large): ${{ pizza.price_large }}</p>  
                                             <div class="card-footer">
-                                                <form action="" method="POST">
+                                                <form action="{% url 'additems' %}" method="POST">
                                                     {% csrf_token %}
                                                     <div class="form-group">
+                                                        <input type="hidden" name="dishtype" value="sicilianpizza">
                                                         <input type="hidden" name="dishname" value="{{ pizza.name }}">
                                                         <input type="hidden" name="price_small" value="{{ pizza.price_small }}">
                                                         <input type="hidden" name="price_large" value="{{ pizza.price_large }}">
                                                         <label for="pizza_size">Choose Size:</label>
                                                         <select class="form-control" id="pizza_size" name="pizza_size">
-                                                            <option value="small"> Small </option>
-                                                            <option value="large"> Large </option>
+                                                            <option value="Small"> Small </option>
+                                                            <option value="Large"> Large </option>
                                                         </select>
                                                         <label for="pizza_topping">Choose Topping(s):</label>
                                                         <select multiple class="form-control" id="pizza_topping" name="pizza_topping">
@@ -97,7 +99,7 @@
                                                         </select>
                                                         <small class="text-muted">Hold down “Control”, or “Command” on a Mac, to select more than one.</small>
                                                     </div>
-                                                    <button type="submit" href="#" class="btn btn-primary">Add to cart</button>
+                                                    <button type="submit" class="btn btn-primary">Add to cart</button>
                                                 </form>                                        
                                             </div>
                                         </div>
@@ -116,25 +118,26 @@
                                     <p class="card-text"> Price(Small): ${{ sub.price_small }}</p>
                                     <p class="card-text"> Price(Large): ${{ sub.price_large }}</p>  
                                     <div class="card-footer">
-                                        <form action="" method="POST">
+                                        <form action="{% url 'additems' %}" method="POST">
                                             {% csrf_token %}
                                             <div class="form-group">
+                                                <input type="hidden" name="dishtype" value="sub">
                                                 <input type="hidden" name="dishname" value="{{ sub.name }}">
                                                 <input type="hidden" name="price_small" value="{{ sub.price_small }}">
                                                 <input type="hidden" name="price_large" value="{{ sub.price_large }}">
                                                 <label for="sub_size">Choose Size:</label>
                                                 <select class="form-control" id="sub_size" name="sub_size">
-                                                    <option value="small"> Small </option>
-                                                    <option value="large"> Large </option>
+                                                    <option value="Small"> Small </option>
+                                                    <option value="Large"> Large </option>
                                                 </select>
                                                 <label for="sub_extras">Choose Extras:</label>
-                                                <select class="form-control" id="sub_extras" name="sub_extras">
+                                                <select multiple class="form-control" id="sub_extras" name="sub_extras">
                                                     {% for extra in subextras %}
-                                                    <option value="{{ extra }}"> {{extra}} </option>
+                                                    <option value="{{ extra.name }}"> {{extra}} </option>
                                                     {% endfor %}                                                    
                                                 </select>
                                             </div>
-                                            <button type="submit" href="#" class="btn btn-primary">Add to cart</button>
+                                            <button type="submit" class="btn btn-primary">Add to cart</button>
                                         </form>                                        
                                     </div>
                                 </div>
@@ -153,11 +156,12 @@
                                     <hr>
                                     <p class="card-text"> Price: ${{ pasta.price }}</p>  
                                     <div class="card-footer">
-                                        <form action="" method="POST">
+                                        <form action="{% url 'additems' %}" method="POST">
                                             {% csrf_token %}
+                                            <input type="hidden" name="dishtype" value="pasta">
                                             <input type="hidden" name="dishname" value="{{ pasta.name }}">
                                             <input type="hidden" name="price" value="{{ pasta.price }}">
-                                            <button type="submit" href="#" class="btn btn-primary">Add to cart</button>
+                                            <button type="submit" class="btn btn-primary">Add to cart</button>
                                         </form>
                                     </div>
                                 </div>
@@ -177,19 +181,20 @@
                                     <p class="card-text"> Price(Small): ${{ platter.price_small }}</p>
                                     <p class="card-text"> Price(Large): ${{ platter.price_large }}</p>  
                                     <div class="card-footer">
-                                        <form action="" method="POST">
+                                        <form action="{% url 'additems' %}" method="POST">
                                             {% csrf_token %}
                                             <div class="form-group">
+                                                <input type="hidden" name="dishtype" value="platter">
                                                 <input type="hidden" name="dishname" value="{{ platter.name }}">
                                                 <input type="hidden" name="price_small" value="{{ platter.price_small }}">
                                                 <input type="hidden" name="price_large" value="{{ platter.price_large }}">
                                                 <label for="platter">Choose Size:</label>
                                                 <select class="form-control" id="platter" name="platter_size">
-                                                    <option value="small"> Small </option>
-                                                    <option value="large"> Large </option>
+                                                    <option value="Small"> Small </option>
+                                                    <option value="Large"> Large </option>
                                                 </select>
                                             </div>
-                                            <button type="submit" href="#" class="btn btn-primary">Add to cart</button>
+                                            <button type="submit" class="btn btn-primary">Add to cart</button>
                                         </form>                                        
                                     </div>
                                 </div>
@@ -208,11 +213,12 @@
                                     <hr>
                                     <p class="card-text"> Price: ${{ salad.price }}</p>  
                                     <div class="card-footer">
-                                        <form action="" method="POST">
+                                        <form action="{% url 'additems' %}" method="POST">
                                             {% csrf_token %}
+                                            <input type="hidden" name="dishtype" value="salad">
                                             <input type="hidden" name="dishname" value="{{ salad.name }}">
                                             <input type="hidden" name="price" value="{{ salad.price }}">
-                                            <button type="submit" href="#" class="btn btn-primary">Add to cart</button>
+                                            <button type="submit" class="btn btn-primary">Add to cart</button>
                                         </form>
                                     </div>
                                 </div>
