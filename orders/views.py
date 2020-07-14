@@ -132,6 +132,11 @@ def cart(request):
     return render(request, "orders/cart.html", context)
 
 def checkout(request):
+    orders = Orders.objects.filter(username = request.user.username).filter(status = 'Initiated')
+
+    for order in orders:
+        order.status = 'Paid'
+        order.save()
 
     messages.success(request, 'Your order has been placed successfully!')
     return HttpResponseRedirect('/')
