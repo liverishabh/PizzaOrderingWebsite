@@ -22,3 +22,10 @@ body{
     font-weight: 500;
 }
 
+.table tr{
+    border-bottom: solid;
+}
+
+.table tr, .table th{
+    text-align: center;
+}
