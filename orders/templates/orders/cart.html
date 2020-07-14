@@ -1,7 +1,7 @@
 {% extends "orders/base.html" %}
 
 {% block title %}
-    Menu
+    Cart
 {% endblock %}
 
 {% block content %}
@@ -30,6 +30,7 @@
         </tbody>
     </table>
     <h5 class="text-white pt-3 mb-3 text-right"> Total Price: ${{ total_price }}</h5>
+    <a href="{% url 'checkout' %}" class="btn btn-primary float-right" > Place Order </a>
 </div>
 
 {% endblock %}

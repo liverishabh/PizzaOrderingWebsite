@@ -131,3 +131,8 @@ def cart(request):
     }
     return render(request, "orders/cart.html", context)
 
+def checkout(request):
+
+    messages.success(request, 'Your order has been placed successfully!')
+    return HttpResponseRedirect('/')
+
