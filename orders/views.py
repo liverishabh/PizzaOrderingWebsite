@@ -131,7 +131,11 @@ def cart(request):
     }
     return render(request, "orders/cart.html", context)
 
+@login_required
 def checkout(request):
+    if request.method == 'GET':
+        return HttpResponseRedirect('/')
+
     orders = Orders.objects.filter(username = request.user.username).filter(status = 'Initiated')
 
     for order in orders:
@@ -140,4 +144,15 @@ def checkout(request):
 
     messages.success(request, 'Your order has been placed successfully!')
     return HttpResponseRedirect('/')
+
+@login_required
+def allorders(request):
+    if request.user.is_superuser:
+        orders = Orders.objects.all()
+        context = {
+            "orders" : orders
+        }
+        return render(request, "orders/allorders.html", context)
+    else:
+        return HttpResponseRedirect(reverse('index'))
 
