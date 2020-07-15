@@ -148,11 +148,23 @@ def checkout(request):
 @login_required
 def allorders(request):
     if request.user.is_superuser:
-        orders = Orders.objects.all()
+        orders = Orders.objects.all().order_by('id').reverse()
         context = {
             "orders" : orders
         }
         return render(request, "orders/allorders.html", context)
     else:
         return HttpResponseRedirect(reverse('index'))
+
+@login_required
+def complete(request):
+    if request.method == 'GET':
+        return HttpResponseRedirect('/')
+    
+    order_id = request.POST["order"]
+    order = Orders.objects.get(pk=order_id)
+    order.status = 'Delivered'
+    order.save()
+    
+    return HttpResponseRedirect(reverse('allorders'))
 

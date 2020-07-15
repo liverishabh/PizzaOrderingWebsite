@@ -31,7 +31,10 @@
         </tbody>
     </table>
     <h5 class="text-white pt-3 mb-3 text-right"> Total Price: ${{ total_price }}</h5>
-    <a href="{% url 'checkout'  %}" class="btn btn-primary float-right" > Place Order </a>
+    <form action="{% url 'checkout' %}", method="POST">
+        {% csrf_token %}
+        <button class="btn btn-primary float-right"> Place Order </button>
+    </form>
     {% else %}
     <h3 class="text-white"> Your Cart is empty.</h3>
     <p class="text-white"> Go to <a href="{% url 'index' %}"> menu </a> to add items.</p>
