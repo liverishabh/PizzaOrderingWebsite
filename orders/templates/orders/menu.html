@@ -6,7 +6,11 @@
 
 {% block content %}
 
-    <div class="container mt-5">
+    <div class="container mt-3">
+        <h1 class="text-white text-center"> <u> OUR MENU PRICING </u> </h1>
+    </div>
+
+    <div class="container mt-3">
         <div class="row row-content">
             <div class="col-12">
                 <ul class="nav nav-tabs" id="menuitems">                                      
@@ -51,13 +55,12 @@
                                                         <option value="Small"> Small </option>
                                                         <option value="Large"> Large </option>
                                                     </select>
-                                                    <label for="pizza_topping">Choose Topping(s):</label>
+                                                    <label for="pizza_topping">Choose Topping(s)*:</label>
                                                     <select multiple class="form-control" id="pizza_topping" name="pizza_topping">
                                                         {% for topping in toppings %}
                                                         <option value="{{ topping }}"> {{topping}} </option>
                                                         {% endfor %}                                                    
-                                                    </select>
-                                                    <small class="text-muted">Hold down “Control”, or “Command” on a Mac, to select more than one.</small>
+                                                    </select>                                                    
                                                 </div>
                                                 <button type="submit" class="btn btn-primary">Add to cart</button>
                                             </form>                                        
@@ -65,8 +68,12 @@
                                     </div>
                                 </div>
                                 {% endif %}
-                            {% endfor %}
-                        </div>
+                            {% endfor %}                            
+                        </div> 
+                        <div class="container">
+                            <small class="text-white text-muted ml-2">*Hold down “Control”, or “Command” on a Mac, to select more than one.</small>
+                        </div> 
+                        
 
                         <h2 class="text-white text-center mt-2"> Sicilian Pizza </h2>
                         <div class="card-columns container pt-3">
@@ -96,8 +103,7 @@
                                                         {% for topping in toppings %}
                                                         <option value="{{ topping }}"> {{topping}} </option>
                                                         {% endfor %}                                                    
-                                                    </select>
-                                                    <small class="text-muted">Hold down “Control”, or “Command” on a Mac, to select more than one.</small>
+                                                    </select>                                                    
                                                 </div>
                                                 <button type="submit" class="btn btn-primary">Add to cart</button>
                                             </form>                                        
@@ -107,6 +113,9 @@
                                 {% endif %}
                             {% endfor %}
                         </div>
+                        <div class="container mb-3">
+                            <small class="text-white text-muted ml-2">*Hold down “Control”, or “Command” on a Mac, to select more than one.</small>
+                        </div> 
                         
                     </div>
                     <div role="tabpanel" class="tab-pane fade" id="subs">
@@ -146,6 +155,9 @@
                             {% empty %}
                             <h4 class="text-white">No Subs</h4>
                             {% endfor %}
+                        </div>
+                        <div class="container mb-3">
+                            <small class="text-white text-muted ml-2">*Hold down “Control”, or “Command” on a Mac, to select more than one.</small>
                         </div>                        
                     </div>
                     <div role="tabpanel" class="tab-pane fade" id="pasta">

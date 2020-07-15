@@ -143,7 +143,7 @@ def checkout(request):
         order.save()
 
     messages.success(request, 'Your order has been placed successfully!')
-    return HttpResponseRedirect('/')
+    return HttpResponseRedirect(reverse('myorders'))
 
 @login_required
 def allorders(request):
@@ -167,4 +167,16 @@ def complete(request):
     order.save()
     
     return HttpResponseRedirect(reverse('allorders'))
+
+@login_required
+def myorders(request):
+    ongoing_orders = Orders.objects.filter(username = request.user.username).filter(status = 'Paid').order_by('id').reverse()
+    previous_orders = Orders.objects.filter(username = request.user.username).filter(status = 'Delivered').order_by('id').reverse()
+
+    context = {
+        "ongoing_orders" : ongoing_orders,
+        "previous_orders" : previous_orders,
+    }
+    return render(request, "orders/myorders.html", context)
+
 

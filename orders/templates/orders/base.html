@@ -32,7 +32,7 @@
                 </a>
                 <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#myNavbar">
                     <span class="navbar-toggler-icon"></span>                                         
-                </button>                
+                </button>                  
                 <div class="collapse navbar-collapse" id="myNavbar">
                     {% if user.is_authenticated %}
                     <ul class="navbar-nav mr-auto">
@@ -43,6 +43,7 @@
                     </ul>
                     <ul class="navbar-nav ml-auto">                                            
                         <a class="nav-link active" href="{% url 'cart' %}"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
+                        <li class="nav-item"><a href="{% url 'myorders' %}" class="nav-link"> My Orders </a></li>
                         <li class="nav-item"><a href="{% url 'logout' %}" class="nav-link"><i class="fas fa-sign-out-alt"></i> Logout </a></li>
                     </ul>
                     {% else %}
@@ -65,7 +66,9 @@
                 
             {% endfor %}
         {% endif %}
+        
 
+        
         <main>
             {% block content %} {% endblock %}
         </main>
