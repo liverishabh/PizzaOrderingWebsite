@@ -43,7 +43,7 @@ def additems(request):
         for topping in toppings:
             remarks = remarks + topping + ', '
 
-        remarks = remarks[slice(len(remarks)-1)]
+        remarks = remarks[slice(len(remarks)-2)]
         if dish == 'regularpizza':
             dishtype = 'Regular Pizza'
         else:
@@ -65,13 +65,17 @@ def additems(request):
             price = request.POST["price_large"]
         extras = request.POST.getlist('sub_extras')
 
-        remarks = 'Size: ' + size + ' | Extras: ' 
+        if len(extras) > 0:
+            remarks = 'Size: ' + size + ' | Extras: '
+        else:
+            remarks = 'Size: ' + size + '  '
+        
         extra_price = 0
         for extra in extras:
             extra_price += SubExtras.objects.filter(name=extra).first().price
             remarks = remarks + extra + ', '
 
-        remarks = remarks[slice(len(remarks)-1)] # This is not working
+        remarks = remarks[slice(len(remarks)-2)]
         price = decimal.Decimal(price)
         price += extra_price
         order = Orders(username = request.user.username, dishtype = 'Sub', dishname = name, price = price, remarks = remarks, status = 'Initiated')
